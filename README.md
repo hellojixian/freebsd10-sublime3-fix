@@ -20,3 +20,4 @@ sudo ./sublime3-fix.sh
 After it get fixed, you can safety delete my script. but if you repeat run the script it would not mix up your system.
 
 # Enjoy coding!
+If you curious about what kind of magic inside the script, please read the source code ;-)
