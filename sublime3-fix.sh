@@ -23,7 +23,7 @@ fi
 
 #make linux.ko auto loaded in next boot time
 if ! (cat /etc/rc.conf | grep -q "linux_enable=\"\?[Yy][Ee][Ss]\"\?"); then 
-	echo linux_enable="YES" >> /etc/rc.conf
+	echo linux_enable=\"YES\" >> /etc/rc.conf
 fi
 
 
