@@ -46,7 +46,7 @@ fi
 mount -a
 
 # if the main entry point is not exists then need to reinstall it
-if [ ! -f /usr/local/bin/sublime ];
+if [ ! -f /usr/local/bin/sublime ]; then
 	pkg update
 	pkg install -f linux-sublime3
 fi
