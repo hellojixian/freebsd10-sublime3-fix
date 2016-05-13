@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# check permission, 
+# because of we need to update system configuration 
+# so root permission is requried
 if [ ! `whoami` == "root" ] ; then
 	echo "Need root permission to permanently fix the issue"
 	echo "Please try it with sudo like below:"
