@@ -19,27 +19,36 @@ if ! (cat /etc/rc.conf | grep -q linux_enable="YES"); then
 	echo linux_enable="YES" >> /etc/rc.conf
 fi
 
-#fix devfs
-if ! (cat /etc/devfs.conf | grep -q "link\s*/tmpfs\s*shm"); then
-	printf "link\t/tmpfs\tshm\n" >> /etc/devfs.conf
-	/etc/rc.d/devfs restart
-fi
 
 # try to mount all before test each pseudo fs
 mount -a
 
-#fix proc/ 
+#fix /proc
 if ! (mount | grep -q "devfs\s*on"); then
+	if [ ! -d /proc ]; then
+		mkdir /proc
+	fi	
 	printf "proc\t\t\t/proc\tprocfs\trw\t0\t0\n" >> /etc/fstab
 fi
 
+#fix /dev/fd
 if ! (mount | grep -q "fdesc\s*on"); then
 	printf "fdesc\t\t\t/dev/fd\tfdescfs\trw\t0\t0\n" >> /etc/fstab
 fi
 
-
+#fix /tmpfs
 if ! (mount | grep -q "tmpfs\s*on"); then
+	if [ ! -d /tmpfs ]; then
+		mkdir /tmpfs
+	fi
 	printf "tmpfs\t\t\t/tmpfs\ttmpfs\trw,mode=777\t0\t0\n" >> /etc/fstab
+fi
+
+
+#fix devfs
+if ! (cat /etc/devfs.conf | grep -q "link\s*/tmpfs\s*shm"); then
+	printf "link\t/tmpfs\tshm\n" >> /etc/devfs.conf
+	/etc/rc.d/devfs restart
 fi
 
 # try to mount them all again
