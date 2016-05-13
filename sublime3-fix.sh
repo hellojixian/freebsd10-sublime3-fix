@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# Hi! it's me Jixian Wang!
+# Hi! it's me - Jixian Wang!
 # if you like this script, please drop me an email at hellojixian@gmail.com for any questions
 # I would like to meet and discus some tech topics with you!
 
